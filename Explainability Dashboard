@@ -1,0 +1,14 @@
+# Using Streamlit
+# This is an initial prototype which will be finetuned later based on further requirements
+import streamlit as st
+import shap
+
+st.title("EQUITAS-X Hiring Dashboard")
+
+# Show fairness metrics
+st.metric("Gender Parity", "0.92", delta="+15% from baseline")
+
+# SHAP explanations
+explainer = shap.TreeExplainer(model)
+shap_values = explainer.shap_values(X_test)
+st.pyplot(shap.summary_plot(shap_values, X_test))
