@@ -1,0 +1,24 @@
+// Ethereum Smart Contract Skeleton
+// This is the intial prototype which will be further finetuned based on requirements
+pragma solidity ^0.8.0;
+
+contract BiasAudit {
+    struct Decision {
+        uint applicantId;
+        uint modelVersion;
+        bool approved;
+        string reason;
+    }
+    
+    Decision[] public decisions;
+    mapping(address => bool) public auditors;
+    
+    function logDecision(uint _id, bool _result, string memory _reason) public {
+        decisions.push(Decision(_id, 1, _result, _reason));
+    }
+    
+    function challengeDecision(uint _index) public {
+        require(auditors[msg.sender], "Not authorized");
+        decisions[_index].approved = false;
+    }
+}
