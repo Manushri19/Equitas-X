@@ -1,0 +1,16 @@
+# Using IBM AIF360
+# This is inital prototype which will be further finetuned based on requirement
+from aif360.datasets import BinaryLabelDataset
+from aif360.metrics import BinaryLabelDatasetMetric
+
+# Load hiring dataset
+dataset = BinaryLabelDataset(df=job_applications, 
+                            label_names=['hired'], 
+                            protected_attribute_names=['gender'])
+
+# Calculate bias metrics
+metric = BinaryLabelDatasetMetric(dataset, 
+                                 unprivileged_groups=[{'gender': 0}], 
+                                 privileged_groups=[{'gender': 1}])
+print(f"Statistical Parity Difference: {metric.statistical_parity_difference()}")
+
