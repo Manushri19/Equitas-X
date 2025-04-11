@@ -1,0 +1,12 @@
+# TensorFlow implementation
+# This is an initial prototype which will be further finetuned based on requirements 
+from aif360.algorithms.inprocessing import AdversarialDebiasing
+
+debiased_model = AdversarialDebiasing(privileged_groups = [{'gender': 1}],
+                                     unprivileged_groups = [{'gender': 0}],
+                                     scope_name='debiased_classifier',
+                                     num_epochs=50,
+                                     debias=True)
+
+# Train model
+debiased_dataset = debiased_model.fit_predict(dataset)
