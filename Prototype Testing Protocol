@@ -1,0 +1,12 @@
+"""Input:
+Real hiring data (UCI Adult Dataset)
+Synthetic protected attributes (gender/race proxies)"""
+
+python3 equitasx.py --dataset hiring.csv --protected gender --audit-level 3
+
+"""Output:
+1.Bias assessment report (PDF)
+2.Fairness-improved model (PKL file)
+3.Blockchain transaction hashes for audits
+4.Interactive counterfactual simulator"""
+
